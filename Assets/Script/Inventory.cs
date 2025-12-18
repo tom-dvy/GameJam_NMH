@@ -6,7 +6,7 @@ public static class InventorySettings
     /// <summary>
     /// Size that each slot has.
     /// </summary>
-    public static readonly Vector2Int slotSize = new(96, 96);
+    public static readonly Vector2Int slotSize = new(128, 128);
 
     /// <summary>
     /// Slot scale for external changes. Do not touch.

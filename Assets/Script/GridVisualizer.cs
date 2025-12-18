@@ -4,72 +4,96 @@ using UnityEngine.UI;
 [RequireComponent(typeof(InventoryGrid))]
 public class GridVisualizer : MonoBehaviour
 {
-    public Color lineColor = new Color(1, 1, 1, 0.3f); // Blanc semi-transparent
-    public float lineWidth = 2f;
+    [Header("Visual Settings")]
+    public Color cellColor = new Color(0.2f, 0.2f, 0.2f, 1f); // Gris foncé
+    public Color borderColor = new Color(0.4f, 0.4f, 0.4f, 1f); // Gris clair
+    public float borderWidth = 2f;
 
     private InventoryGrid grid;
-    private GameObject linesContainer;
+    private GameObject cellsContainer;
 
     private void Start()
     {
         grid = GetComponent<InventoryGrid>();
-        CreateGridLines();
+        CreateGridCells();
     }
 
-    private void CreateGridLines()
+    private void CreateGridCells()
     {
-        // Conteneur pour les lignes
-        linesContainer = new GameObject("GridLines");
-        linesContainer.transform.SetParent(transform);
-        RectTransform containerRect = linesContainer.AddComponent<RectTransform>();
-        containerRect.anchorMin = Vector2.zero;
-        containerRect.anchorMax = Vector2.one;
-        containerRect.sizeDelta = Vector2.zero;
+        // Conteneur pour les cellules
+        cellsContainer = new GameObject("GridCells");
+        cellsContainer.transform.SetParent(transform, false);
+
+        RectTransform containerRect = cellsContainer.AddComponent<RectTransform>();
+        containerRect.anchorMin = new Vector2(0, 1); // Ancre en haut à gauche
+        containerRect.anchorMax = new Vector2(0, 1);
+        containerRect.pivot = new Vector2(0, 1);
         containerRect.anchoredPosition = Vector2.zero;
+        containerRect.sizeDelta = new Vector2(
+            grid.gridSize.x * InventorySettings.slotSize.x,
+            grid.gridSize.y * InventorySettings.slotSize.y
+        );
 
-        // Lignes verticales
-        for (int x = 0; x <= grid.gridSize.x; x++)
+        // Créer chaque cellule
+        for (int y = 0; y < grid.gridSize.y; y++)
         {
-            CreateLine(
-                new Vector2(x * InventorySettings.slotSize.x, 0),
-                new Vector2(x * InventorySettings.slotSize.x, grid.gridSize.y * InventorySettings.slotSize.y),
-                true
-            );
-        }
-
-        // Lignes horizontales
-        for (int y = 0; y <= grid.gridSize.y; y++)
-        {
-            CreateLine(
-                new Vector2(0, y * InventorySettings.slotSize.y),
-                new Vector2(grid.gridSize.x * InventorySettings.slotSize.x, y * InventorySettings.slotSize.y),
-                false
-            );
+            for (int x = 0; x < grid.gridSize.x; x++)
+            {
+                CreateCell(x, y);
+            }
         }
     }
 
-    private void CreateLine(Vector2 start, Vector2 end, bool isVertical)
+    private void CreateCell(int x, int y)
     {
-        GameObject lineObj = new GameObject("Line");
-        lineObj.transform.SetParent(linesContainer.transform);
+        GameObject cellObj = new GameObject($"Cell_{x}_{y}");
+        cellObj.transform.SetParent(cellsContainer.transform, false);
 
-        Image lineImage = lineObj.AddComponent<Image>();
-        lineImage.color = lineColor;
+        // Ajouter l'image de fond
+        Image cellImage = cellObj.AddComponent<Image>();
+        cellImage.color = cellColor;
 
-        RectTransform rect = lineObj.GetComponent<RectTransform>();
-        rect.anchorMin = new Vector2(0, 1);
+        // Configuration du RectTransform - identique à la logique de positionnement des items
+        RectTransform rect = cellObj.GetComponent<RectTransform>();
+        rect.anchorMin = new Vector2(0, 1); // Ancre en haut à gauche
         rect.anchorMax = new Vector2(0, 1);
-        rect.pivot = new Vector2(0, 1);
+        rect.pivot = new Vector2(0.5f, 0.5f); // Pivot au centre
 
-        if (isVertical)
-        {
-            rect.sizeDelta = new Vector2(lineWidth, end.y - start.y);
-            rect.anchoredPosition = new Vector2(start.x, -start.y);
-        }
-        else
-        {
-            rect.sizeDelta = new Vector2(end.x - start.x, lineWidth);
-            rect.anchoredPosition = new Vector2(start.x, -start.y);
-        }
+        // Position exactement comme IndexToInventoryPosition
+        Vector2 position = new Vector2(
+            x * InventorySettings.slotSize.x + InventorySettings.slotSize.x / 2f,
+            -(y * InventorySettings.slotSize.y + InventorySettings.slotSize.y / 2f)
+        );
+
+        rect.anchoredPosition = position;
+        rect.sizeDelta = new Vector2(
+            InventorySettings.slotSize.x - borderWidth,
+            InventorySettings.slotSize.y - borderWidth
+        );
+
+        // Ajouter une bordure (optionnel)
+        CreateCellBorder(cellObj);
+    }
+
+    private void CreateCellBorder(GameObject parent)
+    {
+        GameObject borderObj = new GameObject("Border");
+        borderObj.transform.SetParent(parent.transform, false);
+
+        Image borderImage = borderObj.AddComponent<Image>();
+        borderImage.color = borderColor;
+
+        RectTransform rect = borderObj.GetComponent<RectTransform>();
+        rect.anchorMin = Vector2.zero;
+        rect.anchorMax = Vector2.one;
+        rect.sizeDelta = Vector2.zero;
+        rect.anchoredPosition = Vector2.zero;
+
+        // Créer un effet de bordure en mettant l'image de fond légèrement plus grande
+        rect.offsetMin = new Vector2(-borderWidth / 2, -borderWidth / 2);
+        rect.offsetMax = new Vector2(borderWidth / 2, borderWidth / 2);
+
+        // Mettre la bordure derrière le fond
+        borderObj.transform.SetAsFirstSibling();
     }
 }
