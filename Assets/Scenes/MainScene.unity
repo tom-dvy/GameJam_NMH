@@ -769,7 +769,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1382516485}
   m_HandleRect: {fileID: 1382516484}
   m_Direction: 2
-  m_Value: 0
+  m_Value: 1
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -1576,6 +1576,57 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1382516483}
   m_CullTransparentMesh: 1
+--- !u!1 &1547573931
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1547573933}
+  - component: {fileID: 1547573932}
+  m_Layer: 0
+  m_Name: LootManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1547573932
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1547573931}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a5654950735f9e48a4d22897556604a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::LootManager
+  inventory: {fileID: 0}
+  tempoGrid: {fileID: 0}
+  possibleLoots:
+  - {fileID: 11400000, guid: 4b44baa2d1f7a9942941d73bc8bc76fb, type: 2}
+  - {fileID: 11400000, guid: 0d208160404e5eb4ba70b087ea6e0329, type: 2}
+  - {fileID: 11400000, guid: c07ef359e668bbe41afa52631c1bc61f, type: 2}
+  - {fileID: 11400000, guid: fe5886bac11bd074db6c8816952c5422, type: 2}
+--- !u!4 &1547573933
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1547573931}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1912855233}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1592739481
 GameObject:
   m_ObjectHideFlags: 0
@@ -2045,6 +2096,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::FightManager
   uiManager: {fileID: 1815873308}
   gameOverScreen: {fileID: 468869197}
+  lootManager: {fileID: 1547573932}
 --- !u!114 &1815873308
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2093,6 +2145,7 @@ Transform:
   - {fileID: 514952269}
   - {fileID: 1815873306}
   - {fileID: 532119084}
+  - {fileID: 1547573933}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1988491742

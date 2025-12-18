@@ -19,6 +19,8 @@ public class FightManager : MonoBehaviour
 
     public GameObject gameOverScreen;
 
+    public LootManager lootManager;
+
     private int roomCount = 0;
     private bool isBossRoom = false;
     private bool inCombat = false;
@@ -110,6 +112,11 @@ public class FightManager : MonoBehaviour
             {
                 uiManager.AddLog("Félicitations ! Le Boss est vaincu !", "yellow");
                 roomCount = 0; isBossRoom = false;
+            }
+
+            if (lootManager != null)
+            {
+                lootManager.GenerateLoot();
             }
         }
         else if (player.hp <= 0)
