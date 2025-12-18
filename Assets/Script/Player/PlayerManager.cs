@@ -8,7 +8,7 @@ public class PlayerManager : MonoBehaviour
     public class Player
     {
         public string name = "Héros";
-        public int hp = 1;
+        public int hp = 100;
         public int damage = 10;
         public string color = "#33ca1cff";
         public bool isDead = false;
