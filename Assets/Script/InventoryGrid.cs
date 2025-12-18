@@ -11,6 +11,12 @@ public class InventoryGrid : MonoBehaviour, IPointerEnterHandler
     public Vector2Int gridSize = new(5, 5);
 
     /// <summary>
+    /// Optional: which item types this grid accepts. Empty or null = accepts all types.
+    /// Configure this in the inspector per grid (e.g. equipment slots vs loot inventory).
+    /// </summary>
+    public ItemType[] acceptedTypes;
+
+    /// <summary>
     /// Grid main rect transform reference.
     /// </summary>
     public RectTransform rectTransform;
@@ -24,6 +30,19 @@ public class InventoryGrid : MonoBehaviour, IPointerEnterHandler
     /// Main inventory reference.
     /// </summary>
     public Inventory inventory { get; private set; }
+
+    /// <summary>
+    /// Returns whether this grid accepts the provided item type.
+    /// </summary>
+    public bool Accepts(ItemType type)
+    {
+        if (acceptedTypes == null || acceptedTypes.Length == 0) return true;
+        for (int i = 0; i < acceptedTypes.Length; i++)
+        {
+            if (acceptedTypes[i] == type) return true;
+        }
+        return false;
+    }
 
     private void Awake()
     {

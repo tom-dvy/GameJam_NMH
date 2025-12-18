@@ -200,8 +200,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84f200a4f7ddc1e448ae3c4cb245c0a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Item
-  data: {fileID: 11400000, guid: fe5886bac11bd074db6c8816952c5422, type: 2}
+  data: {fileID: 0}
   icon: {fileID: 3945673593038787150}
   background: {fileID: 4142442891353544670}
-  isRotated: 1
+  isRotated: 0
   rotateIndex: 0
