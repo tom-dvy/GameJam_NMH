@@ -6,7 +6,7 @@ public enum ItemType
 {
     None,
     Weapon,
-    Sheild,
+    Shield,
     Consumable,
     Helmet,
     Torso,

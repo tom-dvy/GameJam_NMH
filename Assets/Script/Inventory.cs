@@ -65,6 +65,9 @@ public class Inventory : MonoBehaviour
         selectedItem = item;
         selectedItem.rectTransform.SetParent(transform);
         selectedItem.rectTransform.SetAsLastSibling();
+
+        // IMPORTANT: Désactiver les raycast sur l'item sélectionné pour pouvoir détecter les grilles en dessous
+        SetItemRaycastTarget(selectedItem, false);
     }
 
     /// <summary>
@@ -72,7 +75,27 @@ public class Inventory : MonoBehaviour
     /// </summary>
     private void DeselectItem()
     {
+        if (selectedItem != null)
+        {
+            // Réactiver les raycast quand l'item est déposé
+            SetItemRaycastTarget(selectedItem, true);
+        }
         selectedItem = null;
+    }
+
+    /// <summary>
+    /// Enable or disable raycast on item images to allow grid detection when dragging
+    /// </summary>
+    private void SetItemRaycastTarget(Item item, bool enabled)
+    {
+        if (item.icon != null)
+        {
+            item.icon.raycastTarget = enabled;
+        }
+        if (item.background != null)
+        {
+            item.background.raycastTarget = enabled;
+        }
     }
 
     /// <summary>
@@ -99,31 +122,7 @@ public class Inventory : MonoBehaviour
                         {
                             if (!ExistsItem(slotPosition, grids[g], itemData.size.width, itemData.size.height))
                             {
-                                Item newItem = Instantiate(itemPrefab);
-                                newItem.rectTransform = newItem.GetComponent<RectTransform>();
-                                newItem.rectTransform.SetParent(grids[g].rectTransform);
-                                newItem.rectTransform.sizeDelta = new Vector2(
-                                    itemData.size.width * InventorySettings.slotSize.x,
-                                    itemData.size.height * InventorySettings.slotSize.y
-                                );
-
-                                newItem.indexPosition = slotPosition;
-                                newItem.inventory = this;
-
-                                for (int xx = 0; xx < itemData.size.width; xx++)
-                                {
-                                    for (int yy = 0; yy < itemData.size.height; yy++)
-                                    {
-                                        int slotX = slotPosition.x + xx;
-                                        int slotY = slotPosition.y + yy;
-
-                                        grids[g].items[slotX, slotY] = newItem;
-                                        grids[g].items[slotX, slotY].data = itemData;
-                                    }
-                                }
-
-                                newItem.rectTransform.localPosition = IndexToInventoryPosition(newItem);
-                                newItem.inventoryGrid = grids[g];
+                                CreateItemInGrid(itemData, slotPosition, grids[g], false);
                                 return;
                             }
                         }
@@ -132,34 +131,7 @@ public class Inventory : MonoBehaviour
                         {
                             if (!ExistsItem(slotPosition, grids[g], itemData.size.height, itemData.size.width))
                             {
-                                Item newItem = Instantiate(itemPrefab);
-                                newItem.Rotate();
-
-                                newItem.rectTransform = newItem.GetComponent<RectTransform>();
-                                newItem.rectTransform.SetParent(grids[g].rectTransform);
-                                newItem.rectTransform.sizeDelta = new Vector2(
-                                    itemData.size.width * InventorySettings.slotSize.x,
-                                    itemData.size.height * InventorySettings.slotSize.y
-                                );
-
-                                newItem.indexPosition = slotPosition;
-                                newItem.inventory = this;
-
-                                for (int xx = 0; xx < itemData.size.height; xx++)
-                                {
-                                    for (int yy = 0; yy < itemData.size.width; yy++)
-                                    {
-                                        int slotX = slotPosition.x + xx;
-                                        int slotY = slotPosition.y + yy;
-
-                                        grids[g].items[slotX, slotY] = newItem;
-                                        grids[g].items[slotX, slotY].data = itemData;
-                                    }
-                                }
-
-                                newItem.rectTransform.localPosition = IndexToInventoryPosition(newItem);
-                                newItem.inventoryGrid = grids[g];
-
+                                CreateItemInGrid(itemData, slotPosition, grids[g], true);
                                 return;
                             }
                         }
@@ -169,6 +141,91 @@ public class Inventory : MonoBehaviour
         }
 
         Debug.Log("(Inventory) Not enough slots found to add the item!");
+    }
+
+    /// <summary>
+    /// Add an item to a specific inventory grid.
+    /// </summary>
+    /// <param name="itemData">Data of the item that will be added.</param>
+    /// <param name="targetGrid">The specific grid where the item should be added.</param>
+    public void AddItemToGrid(ItemData itemData, InventoryGrid targetGrid)
+    {
+        if (targetGrid == null)
+        {
+            Debug.LogError("(Inventory) Target grid is null!");
+            return;
+        }
+
+        if (!targetGrid.Accepts(itemData.itemType))
+        {
+            Debug.LogWarning($"(Inventory) Grid {targetGrid.gameObject.name} does not accept item type: {itemData.itemType}");
+            return;
+        }
+
+        for (int y = 0; y < targetGrid.gridSize.y; y++)
+        {
+            for (int x = 0; x < targetGrid.gridSize.x; x++)
+            {
+                Vector2Int slotPosition = new Vector2Int(x, y);
+
+                // Try normal orientation
+                if (!ExistsItem(slotPosition, targetGrid, itemData.size.width, itemData.size.height))
+                {
+                    CreateItemInGrid(itemData, slotPosition, targetGrid, false);
+                    return;
+                }
+
+                // Try rotated orientation
+                if (!ExistsItem(slotPosition, targetGrid, itemData.size.height, itemData.size.width))
+                {
+                    CreateItemInGrid(itemData, slotPosition, targetGrid, true);
+                    return;
+                }
+            }
+        }
+
+        Debug.Log($"(Inventory) Not enough slots in {targetGrid.gameObject.name} to add the item!");
+    }
+
+    /// <summary>
+    /// Creates and places an item in a grid at the specified position.
+    /// </summary>
+    private void CreateItemInGrid(ItemData itemData, Vector2Int slotPosition, InventoryGrid grid, bool rotated)
+    {
+        Item newItem = Instantiate(itemPrefab);
+
+        if (rotated)
+        {
+            newItem.Rotate();
+        }
+
+        newItem.rectTransform = newItem.GetComponent<RectTransform>();
+        newItem.rectTransform.SetParent(grid.rectTransform);
+        newItem.rectTransform.sizeDelta = new Vector2(
+            itemData.size.width * InventorySettings.slotSize.x,
+            itemData.size.height * InventorySettings.slotSize.y
+        );
+
+        newItem.indexPosition = slotPosition;
+        newItem.inventory = this;
+        newItem.data = itemData;
+
+        int width = rotated ? itemData.size.height : itemData.size.width;
+        int height = rotated ? itemData.size.width : itemData.size.height;
+
+        for (int xx = 0; xx < width; xx++)
+        {
+            for (int yy = 0; yy < height; yy++)
+            {
+                int slotX = slotPosition.x + xx;
+                int slotY = slotPosition.y + yy;
+
+                grid.items[slotX, slotY] = newItem;
+            }
+        }
+
+        newItem.rectTransform.localPosition = IndexToInventoryPosition(newItem);
+        newItem.inventoryGrid = grid;
     }
 
     /// <summary>

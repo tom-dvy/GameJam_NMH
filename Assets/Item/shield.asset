@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9affd056d227e8247a8eea4bf27db53d, type: 3}
-  m_Name: Flowers2
+  m_Name: shield
   m_EditorClassIdentifier: Assembly-CSharp::ItemData
-  itemType: 3
+  itemType: 2
   size:
     width: 1
     height: 1
-  icon: {fileID: -4278747916818796210, guid: b05b976ceac64fc4f8b350e5d985ce4e, type: 3}
+  icon: {fileID: 6355480216337973169, guid: b05b976ceac64fc4f8b350e5d985ce4e, type: 3}
   backgroundColor: {r: 0.65882355, g: 0.65882355, b: 0.65882355, a: 0.23529412}
