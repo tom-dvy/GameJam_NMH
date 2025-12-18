@@ -9,10 +9,9 @@ public class DialogBoxManager : MonoBehaviour
     public TextMeshProUGUI textDisplay;
     public Button nextButton;
 
-    [Header("Game Data")]
     private Queue<string> sentences = new Queue<string>(); // Queue for messages that will been put on the screen
 
-    public void AddEvent(string description)
+    public void AddEvent(string description) // Add a new event to the queue
     {
         sentences.Enqueue(description);
         
@@ -26,7 +25,6 @@ public class DialogBoxManager : MonoBehaviour
     {
         if (sentences.Count == 0)
         {
-            textDisplay.text = "En attente d'actions...";
             nextButton.interactable = false;
             return;
         }
