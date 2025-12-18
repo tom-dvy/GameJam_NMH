@@ -2,6 +2,7 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class FightManager : MonoBehaviour
 {
@@ -115,7 +116,16 @@ public class FightManager : MonoBehaviour
         {
             uiManager.AddLog("Notre héros est tombé au combat...", "#0950b3ff");
             inCombat = false;
-            //gameOverScreen.SetActive(true);
+
+            if (gameOverScreen != null)
+            {
+                gameOverScreen.SetActive(true);
+            }
         }
+    }
+
+    public void RestartGame()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }
