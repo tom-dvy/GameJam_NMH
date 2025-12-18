@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9affd056d227e8247a8eea4bf27db53d, type: 3}
   m_Name: bague
   m_EditorClassIdentifier: Assembly-CSharp::ItemData
+  itemType: 1
   size:
     width: 1
     height: 1

@@ -83,6 +83,10 @@ public class Inventory : MonoBehaviour
     {
         for (int g = 0; g < grids.Length; g++)
         {
+            if (!grids[g].Accepts(itemData.itemType))
+            {
+                continue;
+            }
             for (int y = 0; y < grids[g].gridSize.y; y++)
             {
                 for (int x = 0; x < grids[g].gridSize.x; x++)
@@ -189,6 +193,12 @@ public class Inventory : MonoBehaviour
     public void MoveItem(Item item, bool deselectItemInEnd = true)
     {
         Vector2Int slotPosition = GetSlotAtMouseCoords();
+
+        if (gridOnMouse != null && !gridOnMouse.Accepts(item.data.itemType))
+        {
+            Debug.Log("(Inventory) This grid does not accept item type: " + item.data.itemType);
+            return;
+        }
 
         if (ReachedBoundary(slotPosition, gridOnMouse, item.correctedSize.width, item.correctedSize.height))
         {
