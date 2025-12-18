@@ -429,6 +429,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd45ec6cd8aeb5b41813e56c478377eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::InventoryController
+  temporaryInventoryGrid: {fileID: 484737035}
 --- !u!114 &800833713
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1291,7 +1292,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::InventoryGrid
   gridSize: {x: 4, y: 6}
-  acceptedTypes: 01000000020000000300000004000000050000000600000007000000
+  acceptedTypes: 
   rectTransform: {fileID: 2120585744}
 --- !u!114 &2120585746
 MonoBehaviour:
