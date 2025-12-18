@@ -7,7 +7,7 @@ public class Item : MonoBehaviour
     /// <summary>
     /// Data of the item referenced in the Item script
     /// </summary>
-    public ItemData data;
+    public ItemData data { get; set; }
 
     /// <summary>
     /// Image element responsible for showing the item icon.
