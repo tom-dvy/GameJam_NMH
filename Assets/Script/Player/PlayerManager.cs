@@ -5,6 +5,15 @@ using System.Collections;
 
 public class PlayerManager : MonoBehaviour
 {
+    public class Player
+    {
+        public string name = "Héros";
+        public int hp = 100;
+        public int damage = 10;
+        public string color = "#33ca1cff";
+        public bool isDead = false;
+    }
+
     [Header("UI Components")]
     public TextMeshProUGUI textLog;
     public ScrollRect scrollRect;
@@ -12,7 +21,6 @@ public class PlayerManager : MonoBehaviour
 
     [Header("Settings")]
     public float typeSpeed = 0.02f;
-    
 
     private void Start()
     {
