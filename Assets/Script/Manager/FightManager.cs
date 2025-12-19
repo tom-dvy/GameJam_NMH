@@ -59,7 +59,7 @@ public class FightManager : MonoBehaviour
         else
         {
             roomCount++;
-            if (roomCount <= 4)
+            if (roomCount <= 9)
             {
                 EnterNormalRoom();
             }
@@ -83,14 +83,14 @@ public class FightManager : MonoBehaviour
         string[] rooms = { "une cave sombre", "une forêt dense", "un couloir humide", "une vieille salle de torture" };
         string roomName = rooms[Random.Range(0, rooms.Length)];
 
-        playerManager.AddLog($"--- Salle {roomCount}/4 ---", "#FFFF00");
+        playerManager.AddLog($"--- Salle {roomCount}/9 ---", "#FFFF00");
         playerManager.AddLog($"Vous entrez dans {roomName}", "white");
 
         if (Random.value > 0.3f)
         {
             // Ennemis plus forts au fil des salles
-            int enemyHP = 15 + (roomCount * 5);
-            int enemyDamage = 3 + (roomCount * 2);
+            int enemyHP = 15 + roomCount;
+            int enemyDamage = 1 + roomCount;
 
             string[] enemyNames = { "Gobelin", "Squelette", "Loup Sauvage", "Bandit" };
             string enemyName = enemyNames[Random.Range(0, enemyNames.Length)];
@@ -222,6 +222,16 @@ public class FightManager : MonoBehaviour
 
     void EnemyAttack()
     {
+         // Calcul de la précision
+        float accuracy = statsManager.GetTotalAccuracy();
+        bool hitSuccess = Random.Range(0f, 100f) <= accuracy;
+
+        if (!hitSuccess)
+        {
+            playerManager.AddLog($"{currentEnemy.name} <color=yellow>rate</color> son attaque !", "white");
+            return;
+        }
+
         int rawDamage = currentEnemy.damage;
 
         // Réduction par l'armure
@@ -247,7 +257,7 @@ public class FightManager : MonoBehaviour
         {
             currentEnemy.hp -= thorns;
             playerManager.AddLog(
-                $"Les épines infligent <color=cyan>{thorns}</color> dégâts à {currentEnemy.name} !",
+                $"Les épines infligent <color=blue>{thorns}</color> dégâts à {currentEnemy.name}, HP : {currentEnemy.hp} !",
                 "white"
             );
         }

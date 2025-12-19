@@ -61,7 +61,7 @@ public class LootManager : MonoBehaviour
             {
                 itemToAdd = uncommonLoot[Random.Range(0, uncommonLoot.Length)];
             }
-            else if (roll < 25f && consumables.Length > 0)
+            else if (roll < 15f && consumables.Length > 0)
             {
                 itemToAdd = consumables[Random.Range(0, consumables.Length)];
             }
