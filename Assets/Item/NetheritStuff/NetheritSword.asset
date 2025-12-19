@@ -16,7 +16,7 @@ MonoBehaviour:
   size:
     width: 1
     height: 1
-  icon: {fileID: 6761164967045977113, guid: b05b976ceac64fc4f8b350e5d985ce4e, type: 3}
+  icon: {fileID: 1804459127319912506, guid: d711a4ae88312b348875540bb6b676fa, type: 3}
   backgroundColor: {r: 0.6603774, g: 0.6603774, b: 0.6603774, a: 0.23529412}
   itemName: Netherit Sword
   rarity: 4
