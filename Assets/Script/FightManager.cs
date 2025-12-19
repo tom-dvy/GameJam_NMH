@@ -194,7 +194,7 @@ public class FightManager : MonoBehaviour
 
         if (!hitSuccess)
         {
-            playerManager.AddLog("Le héros <color=gray>rate</color> son attaque !", "white");
+            playerManager.AddLog("Le héros <color=yellow>rate</color> son attaque !", "white");
             return;
         }
 

@@ -33,8 +33,8 @@ public class PlayerStatsManager : MonoBehaviour
     // Stats de base du joueur
     [Header("Base Stats")]
     public int baseHP = 100;
-    public int baseDamage = 10;
-    public float baseAccuracy = 80f;
+    public int baseDamage = 5;
+    public float baseAccuracy = 50f;
     public float baseCritChance = 5f;
 
     // Stats temporaires (buffs des consommables)
