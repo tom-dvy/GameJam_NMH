@@ -16,7 +16,7 @@ MonoBehaviour:
   size:
     width: 1
     height: 1
-  icon: {fileID: 6761164967045977113, guid: b05b976ceac64fc4f8b350e5d985ce4e, type: 3}
+  icon: {fileID: 9214005993533472123, guid: 8e53c0ecd1b0dc24681c033c2e0bf6c4, type: 3}
   backgroundColor: {r: 0.6603774, g: 0.6603774, b: 0.6603774, a: 0.23529412}
   itemName: Bouclier en diamant
   rarity: 3
