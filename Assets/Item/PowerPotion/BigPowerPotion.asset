@@ -16,7 +16,7 @@ MonoBehaviour:
   size:
     width: 1
     height: 1
-  icon: {fileID: -761244108153446232, guid: 17d35e95a735f0c4e9e034ad3aef0901, type: 3}
+  icon: {fileID: -761244108153446232, guid: 75e56fccb8ba4854dbc4e8232b1c1a63, type: 3}
   backgroundColor: {r: 0.6603774, g: 0.6603774, b: 0.6603774, a: 0.23529412}
   itemName: Grosse potion de puissance
   rarity: 3

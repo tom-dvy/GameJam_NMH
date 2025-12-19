@@ -16,7 +16,7 @@ MonoBehaviour:
   size:
     width: 1
     height: 1
-  icon: {fileID: 6554307010889183654, guid: f3c6120b93672b94c80b3729474edbe6, type: 3}
+  icon: {fileID: 6554307010889183654, guid: 4d4efad9329d2544fa8630b4540c18d3, type: 3}
   backgroundColor: {r: 0.6603774, g: 0.6603774, b: 0.6603774, a: 0.23529412}
   itemName: Potion de soin moyenne
   rarity: 1

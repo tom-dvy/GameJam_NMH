@@ -16,7 +16,7 @@ MonoBehaviour:
   size:
     width: 1
     height: 1
-  icon: {fileID: 6561148172678064264, guid: 5d386812790d0e145b0c5104c8bff8fa, type: 3}
+  icon: {fileID: 6561148172678064264, guid: a156b1609a995e64cb32a471ec0d1ec8, type: 3}
   backgroundColor: {r: 0.6603774, g: 0.6603774, b: 0.6603774, a: 0.23529412}
   itemName: "Moyenne potion de pr\xE9cision"
   rarity: 2

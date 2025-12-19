@@ -191,6 +191,7 @@ public class PlayerStatsManager : MonoBehaviour
     /// </summary>
     public void UseConsumable()
     {
+        Debug.Log("UseConsumable appelé");
         Item consumable = GetEquippedItem(consumableSlot);
 
         if (consumable == null || consumable.data.itemType != ItemType.Consumable)

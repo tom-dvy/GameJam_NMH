@@ -2820,11 +2820,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::LootManager
   inventory: {fileID: 809478881}
   tempoGrid: {fileID: 9711751}
-  possibleLoots:
-  - {fileID: 11400000, guid: 4b44baa2d1f7a9942941d73bc8bc76fb, type: 2}
-  - {fileID: 11400000, guid: 0d208160404e5eb4ba70b087ea6e0329, type: 2}
-  - {fileID: 11400000, guid: c07ef359e668bbe41afa52631c1bc61f, type: 2}
-  - {fileID: 11400000, guid: fe5886bac11bd074db6c8816952c5422, type: 2}
+  playerManager: {fileID: 1709904195}
+  copperItems: []
+  goldItems: []
+  diamondItems: []
+  netheriteItems: []
+  commonLoot: []
+  uncommonLoot: []
+  rareLoot: []
+  epicLoot: []
+  legendaryLoot: []
+  consumables: []
 --- !u!4 &1456306729
 Transform:
   m_ObjectHideFlags: 0

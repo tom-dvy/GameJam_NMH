@@ -16,7 +16,7 @@ MonoBehaviour:
   size:
     width: 1
     height: 1
-  icon: {fileID: 822946913853302605, guid: 22a84bbda594c41438df795bb6cde702, type: 3}
+  icon: {fileID: 822946913853302605, guid: 92ce1b4e21bd5fc46a5e2f8fa38a24ef, type: 3}
   backgroundColor: {r: 0.6603774, g: 0.6603774, b: 0.6603774, a: 0.23529412}
   itemName: Moyenne potion de puissance
   rarity: 2

@@ -56,15 +56,15 @@ public class PlayerManager : MonoBehaviour
 
     // Add a log in the text area
     public void AddLog(string message, string colorHex = "white")
-{
-    if (textLog.text.Length > 500) 
     {
-        textLog.text = "... (suite) ...\n\n"; 
-    }
+        if (textLog.text.Length > 300)
+        {
+            textLog.text = "... (suite) ...\n";
+        }
 
-    string newText = $"<color={colorHex}>{message}</color>\n\n";
-    StartCoroutine(TypeFormattedText(newText));
-}
+        string newText = $"<color={colorHex}>{message}</color>\n\n";
+        StartCoroutine(TypeFormattedText(newText));
+    }
 
     // Required for displaying lisible text
     private IEnumerator TypeFormattedText(string message)
@@ -83,7 +83,7 @@ public class PlayerManager : MonoBehaviour
             textLog.maxVisibleCharacters = i;
 
             Canvas.ForceUpdateCanvases();
-            scrollRect.verticalNormalizedPosition = 0f;
+            scrollRect.verticalNormalizedPosition = 1f;
 
             yield return new WaitForSeconds(typeSpeed);
         }
