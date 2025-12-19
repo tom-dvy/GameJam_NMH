@@ -56,10 +56,15 @@ public class PlayerManager : MonoBehaviour
 
     // Add a log in the text area
     public void AddLog(string message, string colorHex = "white")
+{
+    if (textLog.text.Length > 500) 
     {
-        string newText = $"<color={colorHex}>{message}</color>\n\n";
-        StartCoroutine(TypeFormattedText(newText));
+        textLog.text = "... (suite) ...\n\n"; 
     }
+
+    string newText = $"<color={colorHex}>{message}</color>\n\n";
+    StartCoroutine(TypeFormattedText(newText));
+}
 
     // Required for displaying lisible text
     private IEnumerator TypeFormattedText(string message)
@@ -100,11 +105,11 @@ public class PlayerManager : MonoBehaviour
         float crit = statsManager.GetTotalCritChance();
 
         statsDisplay.text = $"<b>STATS DU HÉROS</b>\n" +
-                           $"<color=#FF6666>❤ PV:</color> {player.hp}/{player.maxHP}\n" +
-                           $"<color=#FF4444>⚔ Dégâts:</color> {damage}\n" +
-                           $"<color=#4444FF>🛡 Armure:</color> {armor}\n" +
-                           $"<color=#44FFFF>⚡ Épines:</color> {thorns}\n" +
-                           $"<color=#FFFF44>🎯 Précision:</color> {accuracy:F0}%\n" +
-                           $"<color=#FF44FF>💥 Critiques:</color> {crit:F0}%";
+                           $"<color=#FF6666>PV:</color> {player.hp}/{player.maxHP}\n" +
+                           $"<color=#FF4444>Dégâts:</color> {damage}\n" +
+                           $"<color=#4444FF>Armure:</color> {armor}\n" +
+                           $"<color=#44FFFF>Épines:</color> {thorns}\n" +
+                           $"<color=#FFFF44>Précision:</color> {accuracy:F0}%\n" +
+                           $"<color=#B823B0>Critiques:</color> {crit:F0}%";
     }
 }
