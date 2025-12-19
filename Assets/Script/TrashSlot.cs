@@ -4,7 +4,7 @@ using UnityEngine.EventSystems;
 public class TrashSlot : MonoBehaviour, IDropHandler
 {
     public Inventory inventory;
-    public PlayerManager uiManager;
+    public PlayerManager playerManager;
 
     public void OnDrop(PointerEventData eventData)
     {
@@ -12,7 +12,7 @@ public class TrashSlot : MonoBehaviour, IDropHandler
 
         if (item != null)
         {
-            uiManager.AddLog($"Vous avez jeté {item.data.name} ! ", "gray");
+            playerManager.AddLog($"Vous avez jeté <color=gray>{item.data.itemName}</color> !", "gray");
             inventory.RemoveItem(item);
         }
     }

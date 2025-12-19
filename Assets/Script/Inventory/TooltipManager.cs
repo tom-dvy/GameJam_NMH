@@ -13,10 +13,12 @@ public class TooltipManager : MonoBehaviour
     public TextMeshProUGUI descriptionText;
     public TextMeshProUGUI statsText;
     public Image borderImage;
+    public Image backgroundImage; // Optionnel : pour changer la couleur du fond
 
     [Header("Settings")]
     public Vector2 offset = new Vector2(15, -15);
     public float fadeSpeed = 10f;
+    public bool useRarityBackground = false; // Coloriser le fond selon la rareté
 
     private RectTransform tooltipRect;
     private CanvasGroup canvasGroup;
@@ -89,6 +91,14 @@ public class TooltipManager : MonoBehaviour
             borderImage.color = itemData.GetRarityColor();
         }
 
+        // Fond coloré (optionnel)
+        if (useRarityBackground && backgroundImage != null)
+        {
+            Color bgColor = itemData.GetRarityColor();
+            bgColor.a = 0.2f; // Semi-transparent
+            backgroundImage.color = bgColor;
+        }
+
         // Description
         if (descriptionText != null)
         {
@@ -108,7 +118,8 @@ public class TooltipManager : MonoBehaviour
                     {
                         statsString += "\n";
                     }
-                    statsString += stat.ToString();
+                    // Utiliser la version colorée des stats
+                    statsString += stat.ToColoredString();
                 }
                 statsText.text = statsString;
                 statsText.gameObject.SetActive(true);

@@ -18,3 +18,11 @@ MonoBehaviour:
     height: 1
   icon: {fileID: 6191716412420617325, guid: b05b976ceac64fc4f8b350e5d985ce4e, type: 3}
   backgroundColor: {r: 0.65882355, g: 0.65882355, b: 0.65882355, a: 0.23529412}
+  itemName: Torse en Fer
+  rarity: 1
+  description: Plastron en fer
+  stats:
+  - statType: 3
+    value: 10
+  - statType: 5
+    value: 10

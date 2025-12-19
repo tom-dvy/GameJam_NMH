@@ -18,3 +18,15 @@ MonoBehaviour:
     height: 1
   icon: {fileID: 6355480216337973169, guid: b05b976ceac64fc4f8b350e5d985ce4e, type: 3}
   backgroundColor: {r: 0.65882355, g: 0.65882355, b: 0.65882355, a: 0.23529412}
+  itemName: Shield de dieu
+  rarity: 4
+  description: Bouclier du dieu de la guerre en personne
+  stats:
+  - statType: 3
+    value: 50
+  - statType: 5
+    value: 100
+  - statType: 0
+    value: 20
+  - statType: 4
+    value: 35
