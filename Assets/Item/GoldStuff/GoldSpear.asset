@@ -16,7 +16,7 @@ MonoBehaviour:
   size:
     width: 1
     height: 1
-  icon: {fileID: 6761164967045977113, guid: b05b976ceac64fc4f8b350e5d985ce4e, type: 3}
+  icon: {fileID: 6991592177218005207, guid: 941053c4058b04741b11dd549af4a5d7, type: 3}
   backgroundColor: {r: 0.6603774, g: 0.6603774, b: 0.6603774, a: 0.23529412}
   itemName: Gold Spear
   rarity: 2

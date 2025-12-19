@@ -16,7 +16,7 @@ MonoBehaviour:
   size:
     width: 1
     height: 1
-  icon: {fileID: 6761164967045977113, guid: b05b976ceac64fc4f8b350e5d985ce4e, type: 3}
+  icon: {fileID: -6258170850931958921, guid: e5ccb1848329cb741920da7c54b94dc4, type: 3}
   backgroundColor: {r: 0.6603774, g: 0.6603774, b: 0.6603774, a: 0.23529412}
   itemName: "Jambi\xE8res en or"
   rarity: 2
