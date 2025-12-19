@@ -16,7 +16,7 @@ MonoBehaviour:
   size:
     width: 1
     height: 1
-  icon: {fileID: 7631517646127903244, guid: 5f3f6155e9117eb499c7fedfd0356d05, type: 3}
+  icon: {fileID: -2983000405317826846, guid: 6c807245eaf86c449b1dbe1525b753b0, type: 3}
   backgroundColor: {r: 0.6603774, g: 0.6603774, b: 0.6603774, a: 0.23529412}
   itemName: "Jambi\xE8res en cuivre"
   rarity: 1
@@ -25,4 +25,4 @@ MonoBehaviour:
   - statType: 3
     value: 5
   - statType: 5
-    value: 10
+    value: 6
