@@ -39,7 +39,7 @@ public class TooltipManager : MonoBehaviour
 
         tooltipRect = tooltipPanel.GetComponent<RectTransform>();
         canvasGroup = tooltipPanel.GetComponent<CanvasGroup>();
-
+        
         if (canvasGroup == null)
         {
             canvasGroup = tooltipPanel.AddComponent<CanvasGroup>();
@@ -54,7 +54,7 @@ public class TooltipManager : MonoBehaviour
         {
             // Suivre la position de la souris
             UpdatePosition();
-
+            
             // Fade in
             canvasGroup.alpha = Mathf.Lerp(canvasGroup.alpha, 1f, fadeSpeed * Time.deltaTime);
         }
@@ -154,13 +154,13 @@ public class TooltipManager : MonoBehaviour
     private void UpdatePosition()
     {
         Vector2 mousePosition = Input.mousePosition;
-
+        
         // Ajouter l'offset
         Vector2 targetPosition = mousePosition + offset;
 
         // Empêcher le tooltip de sortir de l'écran
         RectTransform canvasRect = GetComponentInParent<Canvas>().GetComponent<RectTransform>();
-
+        
         // Ajuster horizontalement
         if (targetPosition.x + tooltipRect.rect.width > canvasRect.rect.width)
         {

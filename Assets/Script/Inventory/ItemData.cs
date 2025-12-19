@@ -29,14 +29,14 @@ public enum StatType
     Damage,
     CriticalChance,
     Accuracy,
-
+    
     // Stats d'armure
     Armor,
     Thorns,
-
+    
     // Stats communes
     Durability,
-
+    
     // Stats de consommables
     Heal,
     DamageBoost,
@@ -69,14 +69,14 @@ public class ItemData : ScriptableObject
     [Header("Tooltip Information")]
     [Tooltip("Nom affiché dans le tooltip")]
     public string itemName = "Item";
-
+    
     [Tooltip("Rareté de l'item (change la couleur du tooltip)")]
     public ItemRarity rarity = ItemRarity.Common;
-
+    
     [Tooltip("Description de l'item")]
     [TextArea(3, 6)]
     public string description = "";
-
+    
     [Header("Stats")]
     [Tooltip("Stats de l'item - Toutes les valeurs sont positives")]
     public ItemStat[] stats;
@@ -103,7 +103,7 @@ public struct ItemStat
 {
     [Tooltip("Type de stat")]
     public StatType statType;
-
+    
     [Tooltip("Valeur de la stat (toujours positive)")]
     public float value;
 
@@ -155,19 +155,19 @@ public struct ItemStat
         {
             // Stats d'attaque en rouge
             StatType.Damage or StatType.CriticalChance or StatType.DamageBoost => new Color(1f, 0.4f, 0.4f),
-
+            
             // Stats de défense en bleu
             StatType.Armor or StatType.Thorns => new Color(0.4f, 0.7f, 1f),
-
+            
             // Stats de soin en vert
             StatType.Heal => new Color(0.4f, 1f, 0.4f),
-
+            
             // Stats de précision en jaune
             StatType.Accuracy or StatType.AccuracyBoost => new Color(1f, 0.9f, 0.4f),
-
+            
             // Durabilité en gris
             StatType.Durability => new Color(0.8f, 0.8f, 0.8f),
-
+            
             _ => Color.white
         };
     }

@@ -6,7 +6,7 @@ using UnityEngine;
 public static class ItemStatPresets
 {
     // ========== ARMES ==========
-
+    
     public static ItemStat[] GetWeaponStats(float damage, float critChance, float accuracy, float durability)
     {
         return new ItemStat[]
@@ -22,13 +22,13 @@ public static class ItemStatPresets
     public static ItemStat[] CommonSword => GetWeaponStats(10, 5, 85, 100);
     public static ItemStat[] CommonAxe => GetWeaponStats(15, 3, 70, 80);
     public static ItemStat[] CommonDagger => GetWeaponStats(7, 15, 90, 60);
-
+    
     public static ItemStat[] RareSword => GetWeaponStats(25, 10, 90, 150);
     public static ItemStat[] EpicSword => GetWeaponStats(45, 15, 95, 200);
     public static ItemStat[] LegendarySword => GetWeaponStats(75, 25, 98, 300);
 
     // ========== ARMURES ==========
-
+    
     public static ItemStat[] GetArmorStats(float armor, float thorns, float durability)
     {
         return new ItemStat[]
@@ -44,12 +44,12 @@ public static class ItemStatPresets
     public static ItemStat[] CommonChestplate => GetArmorStats(15, 3, 120);
     public static ItemStat[] CommonLeggings => GetArmorStats(10, 2, 110);
     public static ItemStat[] CommonBoots => GetArmorStats(5, 1, 100);
-
+    
     public static ItemStat[] RareHelmet => GetArmorStats(12, 3, 150);
     public static ItemStat[] RareChestplate => GetArmorStats(30, 8, 180);
 
     // ========== BOUCLIERS ==========
-
+    
     public static ItemStat[] GetShieldStats(float armor, float thorns, float durability)
     {
         return new ItemStat[]
@@ -64,7 +64,7 @@ public static class ItemStatPresets
     public static ItemStat[] RareShield => GetShieldStats(40, 12, 200);
 
     // ========== CONSOMMABLES ==========
-
+    
     public static ItemStat[] GetHealingPotion(float healAmount)
     {
         return new ItemStat[]
@@ -93,7 +93,7 @@ public static class ItemStatPresets
     public static ItemStat[] SmallHealthPotion => GetHealingPotion(25);
     public static ItemStat[] MediumHealthPotion => GetHealingPotion(50);
     public static ItemStat[] LargeHealthPotion => GetHealingPotion(100);
-
+    
     public static ItemStat[] StrengthPotion => GetDamageBoostPotion(20, 30);
     public static ItemStat[] FocusPotion => GetAccuracyBoostPotion(15);
 }
