@@ -1,8 +1,9 @@
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 [RequireComponent(typeof(RectTransform))]
-public class Item : MonoBehaviour
+public class Item : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     /// <summary>
     /// Data of the item referenced in the Item script
@@ -159,6 +160,36 @@ public class Item : MonoBehaviour
                 targetRotation,
                 InventorySettings.rotationAnimationSpeed * Time.deltaTime
             );
+        }
+    }
+
+    /// <summary>
+    /// Called when the mouse enters the item
+    /// </summary>
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        // Ne pas afficher le tooltip si l'item est sélectionné (en train d'être déplacé)
+        if (inventory != null && inventory.selectedItem == this)
+        {
+            return;
+        }
+
+        // Afficher le tooltip
+        if (TooltipManager.Instance != null && data != null)
+        {
+            TooltipManager.Instance.ShowTooltip(data);
+        }
+    }
+
+    /// <summary>
+    /// Called when the mouse exits the item
+    /// </summary>
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        // Cacher le tooltip
+        if (TooltipManager.Instance != null)
+        {
+            TooltipManager.Instance.HideTooltip();
         }
     }
 }
