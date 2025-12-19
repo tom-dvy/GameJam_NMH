@@ -16,7 +16,7 @@ MonoBehaviour:
   size:
     width: 1
     height: 1
-  icon: {fileID: 1040253180509074221, guid: 2d3fc6cd56a8eb4489b553ade3fb7a62, type: 3}
+  icon: {fileID: 1040253180509074221, guid: fce05a6f0479e4d45b28f0e03ac58255, type: 3}
   backgroundColor: {r: 0.6603774, g: 0.6603774, b: 0.6603774, a: 0.23529412}
   itemName: "Petite potion de pr\xE9cision"
   rarity: 1
